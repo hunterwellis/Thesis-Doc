@@ -56,15 +56,16 @@
 
 % The dedication and acknowledgement pages are optional. Comment them out to remove them.
 \dedication{This is where you put your dedications.}
-\acknowledge{This is where you put your acknowledgments.}
+\acknowledge{Thank you to Dr. Thinh Doan and Dr. Michael Hsiao for your guidance and expertise throughout my undergraduate and graduate studies.}
 
 % The abstract is required.
-\abstract{In recent years, neuro-symbolic learning methods have demonstrated promise in tasks requiring a semantic understanding that can often be missed by traditional deep learning techniques. By integrating symbolic reasoning with deep learning architectures the interpretability of the model's reasoning becomes more evident and can provide more control during deployment. This thesis aims to apply neuro-symbolic learning to the domain of reinforcement learning. First, a simulation environment for robotic manipulation tasks based on the Gazebo physics simulator and ROS2 middleware suite is presented. In this environment an analysis of policy-gradient based reinforcement learning algorithm is given. Then, by leveraging the performance of deep learning with the semantic reasoning and interpretability of symbolically defined programming, a novel neuro-symbolic learning method is proposed to generalize tasks and motion planning for robotics applications using natural language. The novel neuro-symbolic can be seen as an adaptation of the Neuro-Symbolic Concept Learner (Mao et. al) developed by IBM Watson, in which images and natural language are first processed by convolutional and residual neural networks, respectively and then parsed by a symbolically reasoned program. Where the architecture proposed in this paper differs, is in its use of the Neuro-Symbolic Concept Learner for preprocessing of a given input task, to then inform a reinforcement learning agent of how to act in a given environment. Finally, the novel adaptation of the Neuro-Symbolic Concept Learner is introduced as a method of controlling multi-task agents.
+\abstract{In recent years, neuro-symbolic learning methods have demonstrated promise in tasks requiring a semantic understanding that can often be missed by traditional deep learning techniques. By integrating symbolic reasoning with deep learning architectures the interpretability of the model's reasoning becomes more evident and can provide more control during deployment. This thesis aims to apply neuro-symbolic learning to the domain of reinforcement learning. First, a simulation environment for robotic manipulation tasks based on the Gazebo Harmonic physics simulator and ROS2 middleware suite is presented. In this environment an analysis of policy-gradient based reinforcement learning algorithm is given. Then, by leveraging the performance of deep learning with the semantic reasoning and interpretability of symbolically defined programming, a novel neuro-symbolic learning method is proposed to generalize tasks and motion planning for robotics applications using natural language. This novel neuro-symbolic can be seen as an adaptation of the Neuro-Symbolic Concept Learner (Mao et. al) developed by IBM Watson, in which images and natural language are first processed by convolutional and residual neural networks, respectively and then parsed by a symbolically reasoned program. Where the architecture proposed in this paper differs, is in its use of the Neuro-Symbolic Concept Learner for preprocessing of a given input task, to then inform a reinforcement learning agent of how to act in a given environment. Finally, the novel adaptation of the Neuro-Symbolic Concept Learner is introduced as a method of controlling multi-task agents.
 }
 %\abstract{\lipsum [1-4]}
 
 % The general audience abstract is required. There are currently no word limits.
-\abstractgenaud{You are also required as of Spring 2016 to include a general audience abstract. This should be geared towards individuals outside of your field that may be reading seeking information about your work. You should avoid language that is particular to your field and clearly define any terms that may have special meaning in your discipline.}
+\abstractgenaud{Neuro-symbolic learning is an area in machine learning that leverages user defined symbolic programming in addition to deep learning. This method goes against the typical approach of end-to-end training of models and instead hopes to benefit from the introduction of symbolic programs.
+}
 
 \begin{document}
 % The following lines set up the front matter of your thesis or dissertation and are required to ensure proper formatting per the VT ETD standards. 
@@ -91,8 +92,7 @@ $\sigma$ is the eighteenth letter of the Greek alphabet, and carries the 's' sou
 
 	%now go ahead and start writing your thesis
 	\chapter{Introduction} \label{ch:introduction}
-   			\lipsum[1]
-      
+    Neuro-symbolic learning methods and concepts have been used in recent years to achieve results that standalone deep learning and symbolic programming methods have not been able to achieve. [EXAMPLES]. The emerging developments in the field of neuro-symbolic learning has created opportunities to explore applications and adaptations of these methods. The field of Reinforcement Learning (RL) has also made advances -- demonstrating the paradigms effectiveness in creating agents that can perform complex tasks autonomously. The intersection of these two research areas has led to developments that have allowed agents to perform tasks with with both programatic interpretability and learned performance. [EXAMPLES].
 %Copy/paste the code below to add sections and subsections to each chapter. Add your own text to the chapter and (sub)section labels to create custom headings.          
     \section{Objectives} \label{se:objectives}
 			\lipsum[2]
