@@ -119,8 +119,40 @@ $\sigma$ is the eighteenth letter of the Greek alphabet, and carries the 's' sou
 			\label{fig:architecture_overview}
 	\end{figure}
 
+    \chapter{Environment and Dataset} \label{ch:training_environment}
+    A custom simulation environment was created to demonstrate the possibilities of the Neuro-Symbolic Reinforcement Learning Methods presented in the previous chapter. The environment was set up for manipulation tasks that can be seen as an extension of the CLEVR dataset.
+    \section{Overview} \label{ch:environment_overview}
+    The environment consists of a six axis robot arm set up in the Gazebo Robotic Simulator. Within the arm's working envelop various basic 3-D shapes (i.e. spheres, cubes, cylinders, etc.) are present.
+    
+    \begin{figure}[htb]
+        \centering
+		    \includegraphics[scale=0.25]{./images/architecture_overview}
+				\caption{Overview of proposed architecture.} 
+			\label{fig:architecture_overview}
+	\end{figure}
+
+    \section{Robot Operating System} \label{se:robot_operating_system}
+    The Robot Operating System is a middleware suite used for robot software development.
+    ROS workspaces consist of packages that interface with ROS libraries. 
+    \subsection{Description Package} \label{ss:description_package}
+    The \texttt{arm\_description} package is a ROS package that contains various files used to describe the physcial characteristics of the robot including its visual, collision, control, and forward kinematics.
+
+    The six-axis robotic arm model deployed in this package is a slightly modified version of an open source six-axis robot design with modfications made to some of the pulleys and end-effector design. The robot arm is made up of six joints (J1-J6) all described as revolute joints in the \texttt{arm\_description}'s Universal Robot Description File (\texttt{.urdf}). Meshes for rendering the robot imported as \texttt{.stl} files and the meshes for collision areas are described by COLLADA (\texttt{.dae}) files. These meshes are linked together in the URDF in a kinematic chain to form the robotic arm manipulator.
+    Control of the robot is accomplished through the ROS Jazzy control package.
+    \section{Gazebo Robotics Simulator} \label{se:gazebo_harmonic_robotics_simulator}
+        Gazebo is a robotic physics simulator developed by Open Robotics which integrates the ODE physics engine, ORGE rendering engine, and support code for sensor and actuator control integration. This environment leverages Gazebo Harmonic (the latest release of Gazebo at the time of writing) to visually render and simulate the physics of the robotic manipulator and the objects in its environment. 
+    \subsection{Simulation Package} \label{ss:simulation_package}
+    \section{Dataset} \label{se:dataset}
+     
+
+
 
 	\chapter{Simulations} \label{ch:simulations}
+
+
+
+	\chapter{} \label{ch:simulations}
+    
 	\chapter{Reality} \label{ch:reality}
 	\chapter{Discussion} \label{ch:discussion}
 	\chapter{Conclusions} \label{ch:conclusions}
