@@ -20,10 +20,13 @@
 
 % The lipsum package is just included to put dummy text in the document in order to demonstrate page headers and table of contents behavior. You should remove it once you begin writing your actual thesis or dissertation.
 \usepackage{lipsum}
-\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{array}
+\graphicspath{ {./images/} }
 
 % Title of your thesis
-\title{Neuro-Symbolic Reinforcement Learning: Natural Language Driven Multi-Task Agents}
+\title{
+Neuro-Symbolic Reinforcement Learning: A Reinforcement Learning Platform \& Neuro-Symbolic Agent}
 
 % You should include 3-5 keywords, separated by commas
 \keywords{Reinforcment Learning, Neuro-symbolic, Neuro-symbolic Concept Learner, Multi-task Reinforcement Learning, Robotics}
@@ -62,7 +65,6 @@
 \abstract{In recent years, neuro-symbolic learning methods have demonstrated promise in tasks requiring a semantic understanding that can often be missed by traditional deep learning techniques. By integrating symbolic reasoning with deep learning architectures the interpretability of the model's reasoning becomes more evident and can provide more control during deployment. This thesis aims to apply neuro-symbolic learning to the domain of reinforcement learning. First, a simulation environment for robotic manipulation tasks based on the Gazebo Harmonic physics simulator and ROS2 middleware suite is presented. In this environment an analysis of policy-gradient based reinforcement learning algorithm is given. Then, by leveraging the performance of deep learning with the semantic reasoning and interpretability of symbolically defined programming, a novel neuro-symbolic learning method is proposed to generalize tasks and motion planning for robotics applications using natural language. This novel neuro-symbolic can be seen as an adaptation of the Neuro-Symbolic Concept Learner (Mao et. al) developed by IBM Watson, in which images and natural language are first processed by convolutional and residual neural networks, respectively and then parsed by a symbolically reasoned program. Where the architecture proposed in this paper differs, is in its use of the Neuro-Symbolic Concept Learner for preprocessing of a given input task, to then inform a reinforcement learning agent of how to act in a given environment. Finally, the novel adaptation of the Neuro-Symbolic Concept Learner is introduced as a method of controlling multi-task agents.
 }
 %\abstract{\lipsum [1-4]}
-
 % The general audience abstract is required. There are currently no word limits.
 \abstractgenaud{Neuro-symbolic learning is an area in machine learning that leverages user defined symbolic programming in addition to deep learning. This method goes against the typical approach of end-to-end training of models and instead hopes to benefit from the introduction of symbolic programs.
 }
@@ -107,17 +109,145 @@ $\sigma$ is the eighteenth letter of the Greek alphabet, and carries the 's' sou
     \section{Markov Decision Process} \label{se:markov_decision_process}
     \section{Reinforcement Learning} \label{se:reinforcement_learning}
     \section{Neuro-symbolic Architectures} \label{se:neurosymbolic_architectures}
+		Neuro-symbolic models can be broadly defined as models which focus on merging both \textit{neural} and \textit{symbolic} AI approaches to add value to the system. The term \textit{nerual} refers to the use of artificial neural networks and the term \textit{symbolic} typically refers to approaches based on explicit symbol manipulation. (CITATION taxonomy.pdf) The fundamental desire of neuro-symbolic models is to leverage both neural and symbolic approaches in a way that is favorable to the strengths of each approach and unfavorable to their weaknesses. The strengths neural models would include the ability to leverage raw data that may be too dificult/complex to semantically reason about, while the weaknesses may include the challenges faced when attempting to reason neural models. Conversely, the strengths of symbolic models include their ability to be highly explainable and verifiable, but they may have weaknesses in their reliance human input/understanding of a system. Thus, the promise of a neuro-symbolic architecture is a system which would be robust from training data, symbolically explainable, and be able to leverage human expert knowledge in its design. 
+
+	In recent years many different neuro-symbolic models have been designed and deployed. Because the intersection of these two approaches may be quite broad and models can take many different forms be it is important to make distinctions between the various incarnations of neuro-symbolic architectures. Henry Kautz, in a 2005 article presents "six possible designs" patterns classifying each method in reference to their neural and symbolic interactions:(CITATION KAUTZ)
+	\begin{scriptsize}
+		\begin{center}
+			\begin{tabular}{ | m{5cm} | m{5cm}| m{5cm} | }
+				\hline
+				\textbf{Neuro-symbolic Design Pattern} & \textbf{Definition} & \textbf{Example}\\
+				\hline
+				Symbolic Neural symbolic & A symbolic input is fed into a neural network producing a symbolc output. & GPT \\
+				\hline
+				Symbolic[Neural] & A neural subroutine is evoked by a symbolic strategy. & AlphaGo \\
+				\hline
+				Neural[Symbolic] & A symbolic subroutine is evoked by a neural strategy. & ChatGPT accessing Wolfram for computations\\
+				\hline
+				Neural|Symbolic & A neural network converts a non-symbolic input into symbolic data to be symbolically processed. & Neuro-Symbolic Concept Learner \\
+				\hline
+				Neural:Symbolic $\rightarrow$ Neural & A symbolically represented dataset is used to train an neural network to predict a symbolic output & ANN-MPC \\
+				\hline
+				Neural\_\{Symbolic\} & Symbolic rules are used to define the structures making up the neural network. & Logic Tensor Networks \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{scriptsize}
+
     \section{Sim-to-Real} \label{se:sim_to_real}
         \subsection{Transfer Learning} \label{ss: transfer_learning}
         \subsection{Multitask Learning} \label{ss:multitask_learning}
-    \chapter{Neuro-symbolic Reinforcment Learning Model}
-    Neuro\\
+    \chapter{Reinforcement Learning Platform}
+    \chapter{Neuro-symbolic Reinforcement Learning Model}
+
+
+		\begin{tikzpicture}[every node/.style={align=center}, node distance=2cm]
+
+			% Nodes
+			\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm] (cnn) {CNN};
+			\node[draw, thick, rectangle, rounded corners, minimum width=3cm, minimum height=2cm, right=1.5cm of cnn] (structured) {Structured \\ Representation};
+			\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm, below=2cm of cnn] (rnn) {RNN};
+			\node[draw, thick, rectangle, rounded corners, minimum width=3cm, minimum height=2cm, right=1.5cm of rnn] (symbolic) {Symbolic \\ Reasoning};
+			\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm, right=3cm of structured] (actor) {Actor, $\mu$};
+			\node[draw, thick, rectangle, rounded corners, minimum width=3cm, minimum height=1.2cm, above=2cm of actor] (environment) {Environment};
+			\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm, below=2cm of actor] (critic) {Critic, $Q$};
+
+			% Connecting Arrows
+			\draw[->, thick] (cnn.east) -- (structured.west);
+			\draw[->, thick] (structured.south) -- (symbolic.north);
+			\draw[->, thick] (symbolic.east) -- (critic.west) node[midway, below] (state) {$s_t$, $s_{t+1}$};
+			\draw[->, thick] (state.north) |- (actor.west);
+			\draw[->, thick] (actor.north) -- (environment.south) node[midway, left] {$a_t$};
+			\draw[->, thick] (actor.south) -- (critic.north) node[midway, left] {$a_t$, $a_{t+1}$};
+			\draw[-, thick] (environment.west) -- ++(-4, 0) node[above] (invis) {} -- ++(-4, 0) node[above] (invis2) {};
+			\draw[->, thick] (invis2.south) -- node[right] {Image} (cnn.north);
+			\draw[->, thick] (invis.south) -- node[right] {Position} (structured.north);
+
+			\draw[->, thick] (rnn.east) -- (symbolic.west);
+
+			% Input and Output Arrows
+			\node[left=0.8cm of rnn] (prompt) {Prompt};
+			\node[right=0.8cm of critic] (Q) {$Q_{new}$};
+			\draw[->, thick] (prompt.east) -- (rnn.west);
+			\draw[->, thick] (critic.east) -- (Q.west);
+
+			% Outer Box
+			\draw[dashed, rounded corners] (-3.75, 4.25) rectangle (6, -4.75) node[below left] {NeSy Concept Learner};
+			\draw[dashed, rounded corners] (6.25, 4.25) rectangle (12.75, -4.75) node[below left] {DDPG};
+			
+		\end{tikzpicture}
+
+		\includegraphics[max width=\textwidth-325pt, center]{architecture_overview}
     \begin{figure}[htb]
         \centering
 		    \includegraphics[scale=0.25]{./images/architecture_overview}
 				\caption{Overview of proposed architecture.} 
 			\label{fig:architecture_overview}
 	\end{figure}
+
+	\begin{tiny}
+		\begin{center}
+			\begin{tabular}{ | m{2cm} | m{2cm}| m{2cm} | m{2cm} | m{3.25cm} |  }
+				\hline
+				\textbf{Shape} & \textbf{Color $(r, g, b)$} & \textbf{Position $(x,y)$} & \textbf{Rotation $\theta$} & \textbf{Velocity $(v_x, v_y, v_z, \omega)$} \\
+				\hline
+				J1 & (0, 0, 0) & (0, 0, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
+				\hline
+				J2 & (0, 0, 0) & (0, 0.1, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
+				\hline
+				J3 & (0, 0, 0) & (0, 0.2, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
+				\hline
+				J4 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
+				\hline
+				J5 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
+				\hline
+				J6 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
+				\hline
+				cube & (255, 0, 255) & (0.75, 0.75, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
+				\hline
+				cylinder & (255, 255, 0) & (-0.25, 1, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
+				\hline
+				rectangle & (0, 0, 255) & (0.5, 0.5, 0) & 90\textdegree & (0, 0, 0, 0) \\ 
+				\hline
+				sphere & (0, 255, 0) & (0.6, -0.1, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{tiny}
+
+
+ 	\begin{tiny}
+		\begin{center}
+			\begin{tabular}{ | m{1cm} | m{1.75cm}| m{2cm} | m{1.5cm} | m{3cm} | m{1cm} | }
+				\hline
+				\textbf{Label} & \textbf{Color $(r, g, b)$} & \textbf{Position $(x,y)$} & \textbf{Rotation $\theta$} & \textbf{Velocity $(v_x, v_y, v_z, \omega)$} & \textbf{Symbol} \\
+				\hline
+				J1 & (0, 0, 0) & (0, 0, 0) & 0\textdegree & (0, 0, 0, 0) & null \\ 
+				\hline
+				J2 & (0, 0, 0) & (0, 0.1, 0) & 0\textdegree & (0, 0, 0, 0) & null\\ 
+				\hline
+				J3 & (0, 0, 0) & (0, 0.2, 0) & 0\textdegree & (0, 0, 0, 0) & null\\ 
+				\hline
+				J4 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0) & null\\ 
+				\hline
+				J5 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0) & null \\ 
+				\hline
+				J6 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0)& null \\ 
+				\hline
+				cube & (255, 0, 255) & (0.75, 0.75, 0) & 0\textdegree & (0, 0, 0, 0) & null\\ 
+				\hline
+				cylinder & (255, 255, 0) & (-0.25, 1, 0) & 0\textdegree & (0, 0, 0, 0) & avoid\\ 
+				\hline
+				rectangle & (0, 0, 255) & (0.5, 0.5, 0) & 90\textdegree & (0, 0, 0, 0) & move\\ 
+				\hline
+				sphere & (0, 255, 0) & (0.6, -0.1, 0) & 0\textdegree & (0, 0, 0, 0) & null\\ 
+				\hline
+				goal & (0, 0, 0) & (-1, 1, 0) & 0\textdegree & (0, 0, 0, 0) & goal\\ 
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{tiny}
+ 
 
 
 	\chapter{Simulations} \label{ch:simulations}
