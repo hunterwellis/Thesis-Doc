@@ -13,15 +13,16 @@
 %
 %In addition to the standard formatting options, the following options are defined for the VTthesis class: proposal, prelim, doublespace, draft. 
 
-\documentclass[doublespace,draft,nopageskip]{VTthesis} % nopageskip - Removes arbitrary blank pages.
+\documentclass[doublespace,nopageskip]{VTthesis} % nopageskip - Removes arbitrary blank pages.
 
 % Using the following header instead will create a draft copy of your thesis
 %\documentclass[doublespace,draft]{VTthesis}
 
 % The lipsum package is just included to put dummy text in the document in order to demonstrate page headers and table of contents behavior. You should remove it once you begin writing your actual thesis or dissertation.
 \usepackage{lipsum}
-\usepackage[export]{adjustbox}
 \usepackage{array}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
 \graphicspath{ {./images/} }
 
 % Title of your thesis
@@ -63,13 +64,11 @@ Neuro-Symbolic Reinforcement Learning: A Reinforcement Learning Platform \& Neur
 %\acknowledge{Thank you to Dr. Thinh Doan and Dr. Michael Hsiao for your guidance and expertise throughout my undergraduate and graduate studies.}
 
 % The abstract is required.
-\abstract{
-%\abstract{In recent years, neuro-symbolic learning methods have demonstrated promise in tasks requiring a semantic understanding that can often be missed by traditional deep learning techniques. By integrating symbolic reasoning with deep learning architectures the interpretability of the model's reasoning becomes more evident and can provide more control during deployment. This thesis aims to apply neuro-symbolic learning to the domain of reinforcement learning. First, a simulation environment for robotic manipulation tasks based on the Gazebo Harmonic physics simulator and ROS2 middleware suite is presented. In this environment an analysis of policy-gradient based reinforcement learning algorithm is given. Then, by leveraging the performance of deep learning with the semantic reasoning and interpretability of symbolically defined programming, a novel neuro-symbolic learning method is proposed to generalize tasks and motion planning for robotics applications using natural language. This novel neuro-symbolic can be seen as an adaptation of the Neuro-Symbolic Concept Learner (Mao et. al) developed by IBM Watson, in which images and natural language are first processed by convolutional and residual neural networks, respectively and then parsed by a symbolically reasoned program. Where the architecture proposed in this paper differs, is in its use of the Neuro-Symbolic Concept Learner for preprocessing of a given input task, to then inform a reinforcement learning agent of how to act in a given environment. Finally, the novel adaptation of the Neuro-Symbolic Concept Learner is introduced as a method of controlling multi-task agents.
+\abstract{In recent years, neuro-symbolic learning methods have demonstrated promise in tasks requiring a semantic understanding that can often be missed by traditional deep learning techniques. By integrating symbolic reasoning with deep learning architectures the interpretability of the model's reasoning becomes more evident and can provide more control during deployment. This thesis aims to apply neuro-symbolic learning to the domain of reinforcement learning. First, a simulation environment for robotic manipulation tasks based on the Gazebo Harmonic physics simulator and ROS2 middleware suite is presented. In this environment an analysis of policy-gradient based reinforcement learning algorithm is given. Then, by leveraging the performance of deep learning with the semantic reasoning and interpretability of symbolically defined programming, a novel neuro-symbolic learning method is proposed to generalize tasks and motion planning for robotics applications using natural language. This novel neuro-symbolic can be seen as an adaptation of the Neuro-Symbolic Concept Learner (Mao et. al) developed by IBM Watson, in which images and natural language are first processed by convolutional and residual neural networks, respectively and then parsed by a symbolically reasoned program. Where the architecture proposed in this paper differs, is in its use of the Neuro-Symbolic Concept Learner for preprocessing of a given input task, to then inform a reinforcement learning agent of how to act in a given environment. Finally, the novel adaptation of the Neuro-Symbolic Concept Learner is introduced as a method of controlling multi-task agents.
 }
 %\abstract{\lipsum [1-4]}
 % The general audience abstract is required. There are currently no word limits.
-\abstractgenaud{
-%\abstractgenaud{Neuro-symbolic learning is an area in machine learning that leverages user defined symbolic programming in addition to deep learning. This method goes against the typical approach of end-to-end training of models and instead hopes to benefit from the introduction of symbolic programs.
+\abstractgenaud{Neuro-symbolic learning is an area in machine learning that leverages user defined symbolic programming in addition to deep learning. This method goes against the typical approach of end-to-end training of models and instead hopes to benefit from the introduction of symbolic programs.
 }
 
 \begin{document}
@@ -94,240 +93,17 @@ $\sigma$ is the eighteenth letter of the Greek alphabet, and carries the 's' sou
 
 % The following sets up the document for the main part of the thesis or dissertation. Do not comment out or remove this line.
 	\mainmatter
+	\include{contents/ch1}
+	\include{contents/ch2}
+	\include{contents/ch3}
+	\include{contents/ch4}
+	\include{contents/ch5}
+	\include{contents/ch6}
+	\include{contents/ch7}
+
 
 	%now go ahead and start writing your thesis
-	\chapter{Introduction} \label{ch:introduction}
-    Neuro-symbolic learning methods and concepts have been used in recent years to achieve results that standalone deep learning and symbolic programming methods have not been able to achieve. [EXAMPLES]. The emerging developments in the field of neuro-symbolic learning has created opportunities to explore applications and adaptations of these methods. The field of Reinforcement Learning (RL) has also made advances -- demonstrating the paradigms effectiveness in creating agents that can perform complex tasks autonomously. The intersection of these two research areas has led to developments that have allowed agents to perform tasks with with both programatic interpretability and learned performance. [EXAMPLES].
-%Copy/paste the code below to add sections and subsections to each chapter. Add your own text to the chapter and (sub)section labels to create custom headings.          
-    \section{Objectives} \label{se:objectives}
-			\lipsum[2]
-			\subsection{A sub-section} \label{ss:this_subsection}
-				\lipsum[1-4]
-	\section{Applications} \label{se:applications}
-	\section{Challenges} \label{se:challenges}
-	\section{Contributions} \label{se:contributions}
-			\lipsum[1-2]
 
-    \chapter{Background} \label{ch:background}
-    \section{Markov Decision Process} \label{se:markov_decision_process}
-    \section{Reinforcement Learning} \label{se:reinforcement_learning}
-    \section{Neuro-symbolic Architectures} \label{se:neurosymbolic_architectures}
-		Neuro-symbolic models can be broadly defined as models which focus on merging both \textit{neural} and \textit{symbolic} AI approaches to add value to the system. The term \textit{nerual} refers to the use of artificial neural networks and the term \textit{symbolic} typically refers to approaches based on explicit symbol manipulation. (CITATION taxonomy.pdf) The fundamental desire of neuro-symbolic models is to leverage both neural and symbolic approaches in a way that is favorable to the strengths of each approach and unfavorable to their weaknesses. The strengths neural models would include the ability to leverage raw data that may be too dificult/complex to semantically reason about, while the weaknesses may include the challenges faced when attempting to reason neural models. Conversely, the strengths of symbolic models include their ability to be highly explainable and verifiable, but they may have weaknesses in their reliance human input/understanding of a system. Thus, the promise of a neuro-symbolic architecture is a system which would be robust from training data, symbolically explainable, and be able to leverage human expert knowledge in its design. 
-
-	In recent years many different neuro-symbolic models have been designed and deployed. Because the intersection of these two approaches may be quite broad and models can take many different forms be it is important to make distinctions between the various incarnations of neuro-symbolic architectures. Henry Kautz, in a 2005 article presents "six possible designs" patterns classifying each method in reference to their neural and symbolic interactions:(CITATION KAUTZ)
-	\begin{scriptsize}
-		\begin{center}
-			\begin{tabular}{ | m{5cm} | m{5cm}| m{5cm} | }
-				\hline
-				\textbf{Neuro-symbolic Design Pattern} & \textbf{Definition} & \textbf{Example}\\
-				\hline
-				Symbolic Neural symbolic & A symbolic input is fed into a neural network producing a symbolc output. & GPT \\
-				\hline
-				Symbolic[Neural] & A neural subroutine is evoked by a symbolic strategy. & AlphaGo \\
-				\hline
-				Neural[Symbolic] & A symbolic subroutine is evoked by a neural strategy. & ChatGPT accessing Wolfram for computations\\
-				\hline
-				Neural|Symbolic & A neural network converts a non-symbolic input into symbolic data to be symbolically processed. & Neuro-Symbolic Concept Learner \\
-				\hline
-				Neural:Symbolic $\rightarrow$ Neural & A symbolically represented dataset is used to train an neural network to predict a symbolic output & ANN-MPC \\
-				\hline
-				Neural\_\{Symbolic\} & Symbolic rules are used to define the structures making up the neural network. & Logic Tensor Networks \\
-				\hline
-			\end{tabular}
-		\end{center}
-	\end{scriptsize}
-
-    \section{Sim-to-Real} \label{se:sim_to_real}
-        \subsection{Transfer Learning} \label{ss: transfer_learning}
-        \subsection{Multitask Learning} \label{ss:multitask_learning}
-    \chapter{Reinforcement Learning Platform}
-   Given the problem space two environments were created to validate the neuro-symblic alogirithms mentioned in the previous sections
-
-    Custom real and cooresponding simulated environments were created to demonstrate the possibilities of the Neuro-Symbolic Reinforcement Learning Methods presented in the previous chapter. The environment was set up for basic object manipulation tasks. The cooresponding dataset used to train the model that can be seen as an extension of the CLEVR dataset -- which instead prompts the agent to act on the objects in the environment.
-    \section{Real-Time Hardware Environment}  \label{se:real_hardware_environment}
-    The physical hardware used to test the algorithms is made up of a 6-axis robot arm communicating over serial (UART) with a PC running the algorithms in a ROS2 Jazzy workspace.
-    The rigid components of the arm including gears and structural pieces are made of 3D-printed Polylactic Acid (PLA).
-    The robotic arm uses stepper motors, belts, and pulleys to articluate the 6 joints. 
-    The first 5 joints (J1 to J5) use bipolar NEMA 17 stepper motors, while the last joint J6, responsible for manipulating the end effector, uses a bipolar NEMA 8 stepper motor.
-    The belts and pulleys are "off-the-shelf" GT2 timing belts and pulleys of varying sizes, used to the torque applied to each joint (belts and pulleys connect every motor to a joint with the exception of J6).
-    Ball and shunt bearings of verious sizes are also used to reduce friction in the joints.
-
-    The electronic hardware is controlled by an ATmega328p microcontoller and 6 A4988 stepper motor drivers originally setup for controlling the stepper motors of a 3D-Printer.
-   Custom firmware was written for the microcontroller to run the 6 stepper motor drivers simultaineously with a serial (UART) inturrupt to recieve control commands from the host PC. 
-
-    \begin{center}
-      \begin{tikzpicture}
-
-        \node[draw,
-          minimum width=2cm,
-          minimum height=1.2cm,
-          ] (input) at (0,0){$ROS2$};
-
-        \node[draw,
-          minimum width=2cm,
-          minimum height=1.2cm,
-          right=1.5cm of input
-          ] (sum) {$\mu C$};
-
-        \node[draw,
-          align=center,
-          minimum width=2cm,
-          minimum height=1.2cm,
-          right=1cm of sum 
-          ]  (controller) {$Motor\ Controllers$};
-
-        \node[draw,
-          minimum width=2cm,
-          minimum height=1.2cm,
-          right=1cm of controller 
-          ]  (plant) {$Robotic\ Arm$};
-
-        \node[draw=none, right=1.5cm of plant] (output) {$y$};
-
-        \draw[->] (input.east) -- (sum.west) node[midway, above]{\tiny{$UART$}};
-        \draw[->] (sum.east) -- (controller.west) node[midway, above]{$u$};
-        \draw[->] (controller.east) -- (plant.west);
-        \draw[->] (plant.east) -- (output.west);
-        \draw[->] (output.center) ++(-1,0) |- ++(0,-1.25) -| (sum.south) node[midway, below]{};
-
-      \end{tikzpicture}\\
-      Feedback system
-    \end{center}
-
-
-
-    \section{Virtual Environment} \label{se:virtual_overview}
-    The environment consists of the same six axis robot arm described in the previous section set up in the Gazebo Robotic Simulator (using a ROS Universal Robot Description File and Gazebo Simulation Description File).
-    Within the arm's working envelop various basic 3-D shapes (i.e. spheres, cubes, cylinders, etc.) are present.
-    
-    \section{Robot Operating System} \label{se:robot_operating_system}
-    The Robot Operating System is a middleware suite used for robot software development.
-    ROS workspaces consist of packages that interface with ROS libraries. 
-    \subsection{Description Package} \label{ss:description_package}
-    The \texttt{arm\_description} package is a ROS package that contains various files used to describe the physcial characteristics of the robot including its visual, collision, control, and forward kinematics.
-
-    The six-axis robotic arm model deployed in this package is a slightly modified version of an open source six-axis robot design with modfications made to some of the pulleys and end-effector design. The robot arm is made up of six joints (J1-J6) all described as revolute joints in the \texttt{arm\_description}'s Universal Robot Description File (\texttt{.urdf}). Meshes for rendering the robot imported as \texttt{.stl} files and the meshes for collision areas are described by COLLADA (\texttt{.dae}) files. These meshes are linked together in the URDF in a kinematic chain to form the robotic arm manipulator.
-    Control of the robot is accomplished through the ROS Jazzy control package.
-    \section{Gazebo Robotics Simulator} \label{se:gazebo_harmonic_robotics_simulator}
-        Gazebo is a robotic physics simulator developed by Open Robotics which integrates the ODE physics engine, ORGE rendering engine, and support code for sensor and actuator control integration. This environment leverages Gazebo Harmonic (the latest release of Gazebo at the time of writing) to visually render and simulate the physics of the robotic manipulator and the objects in its environment. 
-    \subsection{Simulation Package} \label{ss:simulation_package}
-    \section{Dataset} \label{se:dataset}
-  
-    \chapter{Neuro-symbolic Reinforcement Learning Model}
-
-
-		\begin{tikzpicture}[every node/.style={align=center}, node distance=2cm]
-
-			% Nodes
-			\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm] (cnn) {CNN};
-			\node[draw, thick, rectangle, rounded corners, minimum width=3cm, minimum height=2cm, right=1.5cm of cnn] (structured) {Structured \\ Representation};
-			\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm, below=2cm of cnn] (rnn) {RNN};
-			\node[draw, thick, rectangle, rounded corners, minimum width=3cm, minimum height=2cm, right=1.5cm of rnn] (symbolic) {Symbolic \\ Reasoning};
-			\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm, right=3cm of structured] (actor) {Actor, $\mu$};
-			\node[draw, thick, rectangle, rounded corners, minimum width=3cm, minimum height=1.2cm, above=2cm of actor] (environment) {Environment};
-			\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm, below=2cm of actor] (critic) {Critic, $Q$};
-
-			% Connecting Arrows
-			\draw[->, thick] (cnn.east) -- (structured.west);
-			\draw[->, thick] (structured.south) -- (symbolic.north);
-			\draw[->, thick] (symbolic.east) -- (critic.west) node[midway, below] (state) {$s_t$, $s_{t+1}$};
-			\draw[->, thick] (state.north) |- (actor.west);
-			\draw[->, thick] (actor.north) -- (environment.south) node[midway, left] {$a_t$};
-			\draw[->, thick] (actor.south) -- (critic.north) node[midway, left] {$a_t$, $a_{t+1}$};
-			\draw[-, thick] (environment.west) -- ++(-4, 0) node[above] (invis) {} -- ++(-4, 0) node[above] (invis2) {};
-			\draw[->, thick] (invis2.south) -- node[right] {Image} (cnn.north);
-			\draw[->, thick] (invis.south) -- node[right] {Position} (structured.north);
-
-			\draw[->, thick] (rnn.east) -- (symbolic.west);
-
-			% Input and Output Arrows
-			\node[left=0.8cm of rnn] (prompt) {Prompt};
-			\node[right=0.8cm of critic] (Q) {$Q_{new}$};
-			\draw[->, thick] (prompt.east) -- (rnn.west);
-			\draw[->, thick] (critic.east) -- (Q.west);
-
-			% Outer Box
-			\draw[dashed, rounded corners] (-3.75, 4.25) rectangle (6, -4.75) node[below left] {NeSy Concept Learner};
-			\draw[dashed, rounded corners] (6.25, 4.25) rectangle (12.75, -4.75) node[below left] {DDPG};
-			
-		\end{tikzpicture}
-
-		\includegraphics[max width=\textwidth-325pt, center]{architecture_overview}
-    \begin{figure}[htb]
-        \centering
-		    \includegraphics[scale=0.25]{./images/architecture_overview}
-				\caption{Overview of proposed architecture.} 
-			\label{fig:architecture_overview}
-	\end{figure}
-
-	\begin{tiny}
-		\begin{center}
-			\begin{tabular}{ | m{2cm} | m{2cm}| m{2cm} | m{2cm} | m{3.25cm} |  }
-				\hline
-				\textbf{Shape} & \textbf{Color $(r, g, b)$} & \textbf{Position $(x,y)$} & \textbf{Rotation $\theta$} & \textbf{Velocity $(v_x, v_y, v_z, \omega)$} \\
-				\hline
-				J1 & (0, 0, 0) & (0, 0, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
-				\hline
-				J2 & (0, 0, 0) & (0, 0.1, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
-				\hline
-				J3 & (0, 0, 0) & (0, 0.2, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
-				\hline
-				J4 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
-				\hline
-				J5 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
-				\hline
-				J6 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
-				\hline
-				cube & (255, 0, 255) & (0.75, 0.75, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
-				\hline
-				cylinder & (255, 255, 0) & (-0.25, 1, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
-				\hline
-				rectangle & (0, 0, 255) & (0.5, 0.5, 0) & 90\textdegree & (0, 0, 0, 0) \\ 
-				\hline
-				sphere & (0, 255, 0) & (0.6, -0.1, 0) & 0\textdegree & (0, 0, 0, 0) \\ 
-				\hline
-			\end{tabular}
-		\end{center}
-	\end{tiny}
-
-
- 	\begin{tiny}
-		\begin{center}
-			\begin{tabular}{ | m{1cm} | m{1.75cm}| m{2cm} | m{1.5cm} | m{3cm} | m{1cm} | }
-				\hline
-				\textbf{Label} & \textbf{Color $(r, g, b)$} & \textbf{Position $(x,y)$} & \textbf{Rotation $\theta$} & \textbf{Velocity $(v_x, v_y, v_z, \omega)$} & \textbf{Symbol} \\
-				\hline
-				J1 & (0, 0, 0) & (0, 0, 0) & 0\textdegree & (0, 0, 0, 0) & null \\ 
-				\hline
-				J2 & (0, 0, 0) & (0, 0.1, 0) & 0\textdegree & (0, 0, 0, 0) & null\\ 
-				\hline
-				J3 & (0, 0, 0) & (0, 0.2, 0) & 0\textdegree & (0, 0, 0, 0) & null\\ 
-				\hline
-				J4 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0) & null\\ 
-				\hline
-				J5 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0) & null \\ 
-				\hline
-				J6 & (0, 0, 0) & (0, 0.4, 0) & 0\textdegree & (0, 0, 0, 0)& null \\ 
-				\hline
-				cube & (255, 0, 255) & (0.75, 0.75, 0) & 0\textdegree & (0, 0, 0, 0) & null\\ 
-				\hline
-				cylinder & (255, 255, 0) & (-0.25, 1, 0) & 0\textdegree & (0, 0, 0, 0) & avoid\\ 
-				\hline
-				rectangle & (0, 0, 255) & (0.5, 0.5, 0) & 90\textdegree & (0, 0, 0, 0) & move\\ 
-				\hline
-				sphere & (0, 255, 0) & (0.6, -0.1, 0) & 0\textdegree & (0, 0, 0, 0) & null\\ 
-				\hline
-				goal & (0, 0, 0) & (-1, 1, 0) & 0\textdegree & (0, 0, 0, 0) & goal\\ 
-				\hline
-			\end{tabular}
-		\end{center}
-	\end{tiny}
- 
-
-	\chapter{Simulations} \label{ch:simulations}
-
-	\chapter{Discussion} \label{ch:discussion}
-	\chapter{Conclusions} \label{ch:conclusions}
 
 	% This is the standard bibtex file. Do not include the .bib extension in <bib_file_name>.
 	% Uncomment the following lines to include your bibliography: 
@@ -459,9 +235,3 @@ $\sigma$ is the eighteenth letter of the Greek alphabet, and carries the 's' sou
 %    Alan Lattimer, VT, 2016
 %
 %****************************************************************************
-
-
-
-
-
-
