@@ -40,10 +40,10 @@ These agents attempt to recieve a high reward by taking an input observation sta
 			] (env) at (0,0){Enviroment};
 
 		\draw[->] (env.south) -- ++(0,-0.75) 
-			-- node[below]{$s_{t}$, $r_{t}$} ++(-4cm,0)
+			-- node[below]{$S_{t}$, $R_{t}$} ++(-4cm,0)
 			-| (agent.south);
 		\draw[->] (agent.north) -- ++(0,0.75) 
-			-- node[above]{$a_{t}$} ++(4cm,0)
+			-- node[above]{$A_{t}$} ++(4cm,0)
 			-| (env.north);
 
 	\end{tikzpicture}
@@ -53,7 +53,14 @@ These agents attempt to recieve a high reward by taking an input observation sta
 
 
 In practice, this means that at each timestep, an agent observes a state, performs an action, and receives a reward based on the outcome.
-Over time, a well designed agent will learn a policy that maximizes cumulative reward [CITATION].
+Over time, a well designed agent will learn a policy that finds or closely approximates the optimal policy \cite{Sutton1998}.
+
+\subsection{Markov Decision Process}
+Environments are typically defined as an Markov Decision Process (MDP). There are four main components that make up an MDP, states $S$, actions $A$, transition probability $P$, and reward $R$.
+
+
+\subsection{Finding an Optimal Policy}
+To \textit{solve} an MDP we attempt to find an optimal policy $\pi^*$.
 
 \subsection{Deep Reinforcement Learning} \label{ss:deep_reinforcement_learning}
 Deep RL leverages deep neural networks to approximate policies or value functions in high-dimensional state spaces. It allows agents to learn directly from raw inputs like images or sensor data. Algorithms like DQN and PPO have been successful in a variety of domains, but often lack interpretability.
