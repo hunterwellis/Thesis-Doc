@@ -19,23 +19,57 @@ Gazebo provides realistic physics-based simulation of robots and their environme
 
 % \section{Markov Decision Process} \label{se:markov_decision_process}
 \section{Reinforcement Learning} \label{se:reinforcement_learning}
-Reinforcement Learning (RL) is a paradigm where agents learn to make decisions by interacting with an environment. At each timestep, an agent observes a state, performs an action, and receives a reward based on the outcome. Over time, the agent learns a policy that maximizes cumulative reward.
+Reinforcement learning (RL) is a machine learning paradigm that emphasizes goal-oriented learning from interactions in an environment \cite{Sutton1998}. 
+In the RL paradigm agents act in an environment and recieve rewards from the environment.
+A high reward informs the agent that it's actions are beneficial to the objective, where as a low reward tells the agent that it is acting poorly in the environment, with respect to the objective.
+These agents attempt to recieve a high reward by taking an input observation state and developing an optimal policy to predict actions that will return a high reward. 
+
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}[every node/.style={align=center}, node distance=2cm]
+
+		\node[draw,
+			minimum width=2cm,
+			minimum height=1.2cm,
+			] (agent) at (0,0){Agent};
+
+		\node[draw,
+			minimum width=2cm,
+			minimum height=1.2cm,
+			right=3cm of agent
+			] (env) at (0,0){Enviroment};
+
+		\draw[->] (env.south) -- ++(0,-0.75) 
+			-- node[below]{$s_{t}$, $r_{t}$} ++(-4cm,0)
+			-| (agent.south);
+		\draw[->] (agent.north) -- ++(0,0.75) 
+			-- node[above]{$a_{t}$} ++(4cm,0)
+			-| (env.north);
+
+	\end{tikzpicture}
+	\caption{Agent-environment interaction loop}
+	\label{fig:loop}
+\end{figure}
+
+
+In practice, this means that at each timestep, an agent observes a state, performs an action, and receives a reward based on the outcome.
+Over time, a well designed agent will learn a policy that maximizes cumulative reward [CITATION].
 
 \subsection{Deep Reinforcement Learning} \label{ss:deep_reinforcement_learning}
 Deep RL leverages deep neural networks to approximate policies or value functions in high-dimensional state spaces. It allows agents to learn directly from raw inputs like images or sensor data. Algorithms like DQN and PPO have been successful in a variety of domains, but often lack interpretability.
 
 \subsection{Deep Deterministic Policy Gradient} \label{ss:deep_deterministic_policy_gradient}
-DDPG is an off-policy actor-critic algorithm designed for continuous action spaces. It combines value-based and policy-based methods by training a deterministic policy alongside a Q-function. In this work, DDPG is used as the primary reinforcement learning method for robotic control tasks.
+DDPG is an off-policy actor-critic algorithm designed for continuous action spaces \cite{lillicrap2019continuouscontroldeepreinforcement}. It combines value-based and policy-based methods by training a deterministic policy alongside a Q-function. In this work, DDPG is used as the primary reinforcement learning method for robotic control tasks.
 
 \subsection{Hindsight Experience Replay} \label{ss:hindsight_experience_replay}
-HER enhances sample efficiency in sparse reward environments by relabeling failed experiences as successful ones based on alternative goals. This allows agents to learn from episodes that would otherwise provide little learning signal. HER is particularly useful in goal-conditioned tasks such as pick-and-place.
+HER enhances sample efficiency in sparse reward environments by relabeling failed experiences as successful ones based on alternative goals \cite{andrychowicz2018hindsightexperiencereplay}. This allows agents to learn from episodes that would otherwise provide little learning signal. HER is particularly useful in goal-conditioned tasks such as pick-and-place.
 
 \section{Neuro-symbolic AI} \label{se:neurosymbolic_ai}
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.25]{./images/interpretability_vs_flexibility.png}
-	\caption{Trade-off between interpretabilty and model flexibility} 
+	\caption{Trade-off between interpretabilty and model flexibility \cite{james2013introduction}} 
 \end{figure}
 
 Neuro-symbolic models can be broadly defined as models which focus on merging both \textit{neural} and \textit{symbolic} AI approaches to add value to the system. The term \textit{nerual} refers to the use of artificial neural networks and the term \textit{symbolic} typically refers to approaches based on explicit symbol manipulation. (CITATION taxonomy.pdf) The fundamental desire of neuro-symbolic models is to leverage both neural and symbolic approaches in a way that is favorable to the strengths of each approach and unfavorable to their weaknesses. The strengths neural models would include the ability to leverage raw data that may be too dificult/complex to semantically reason about, while the weaknesses may include the challenges faced when attempting to reason neural models. Conversely, the strengths of symbolic models include their ability to be highly explainable and verifiable, but they may have weaknesses in their reliance human input/understanding of a system. Thus, the promise of a neuro-symbolic architecture is a system which would be robust from training data, symbolically explainable, and be able to leverage human expert knowledge in its design. 

@@ -27,10 +27,10 @@
 
 % Title of your thesis
 \title{
-Neuro-Symbolic Reinforcement Learning: A Reinforcement Learning Platform \& Neuro-Symbolic Agent}
+Neuro-Symbolic Reinforcement Learning: A Robotic Manipulator Platform \& Multi-Task Agent}
 
 % You should include 3-5 keywords, separated by commas
-\keywords{Reinforcment Learning, Neuro-symbolic, Neuro-symbolic Concept Learner, Multi-task Reinforcement Learning, Robotics}
+\keywords{Reinforcement Learning, Neuro-symbolic, Neuro-symbolic Concept Learner, Multi-task Reinforcement Learning, Robotics}
 
 % Your name, including middle initial(s)
 \author{Hunter W. Ellis}
@@ -78,18 +78,26 @@ Neuro-Symbolic Reinforcement Learning: A Reinforcement Learning Platform \& Neur
   \tableofcontents
 
 % The list of figures and tables are now optional per the official ETD standards.  Unless you have a very good reason for removing them, you should leave these lists in the document. Comment them out to remove them.
-	\listoffigures
-	\listoftables
-    \printnomenclature %Creates a list of abbreviations. Comment out to remove it. 
+		\listoffigures
+		\listoftables
+	\printnomenclature
 
 % sample text for abbreviations:
-NLP is a field of computer science, artificial intelligence, and linguistics concerned with the interactions between computers and human (natural) languages.
  
+\nomenclature{AI}{Artificial Intelligence}
+\nomenclature{RL}{Reinforcement Learning}
+\nomenclature{NeSy}{Neuro-Symbolic}
+\nomenclature{NS-CL}{Neuro-Symbolic Concept Learner}
+\nomenclature{NSRL}{Neuro-Symbolic Reinforcement Learning}
+\nomenclature{UART}{Universal Asynchronous Receiver/Transmitter}
+\nomenclature{USB}{Universal Serial Bus}
+\nomenclature{RAMPS}{RepRap Arduino Mega Pololu Shield}
+% \nomenclature{$\mu$C}{Microcontroller}
+\nomenclature{DDPG}{Deep Deterministic Policy Gradient}
+\nomenclature{HER}{Hindsight Experience Replay}
 \nomenclature{NLP}{Natural Language Processing}
  
-$\sigma$ is the eighteenth letter of the Greek alphabet, and carries the 's' sound. In the system of Greek numerals, it has a value of 200. 
- 
-\nomenclature{$\sigma$}{The total mass of angels per unit area}
+
 
 % The following sets up the document for the main part of the thesis or dissertation. Do not comment out or remove this line.
 	\mainmatter
@@ -107,8 +115,8 @@ $\sigma$ is the eighteenth letter of the Greek alphabet, and carries the 's' sou
 
 	% This is the standard bibtex file. Do not include the .bib extension in <bib_file_name>.
 	% Uncomment the following lines to include your bibliography: 
-	%\bibliography{<bib_file_name>}
-	%\bibliographystyle{plainnat}   
+	\bibliography{./references/ref}
+	\bibliographystyle{ieeetr}   
 \end{document}
 
 

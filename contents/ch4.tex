@@ -6,13 +6,13 @@
 	\begin{tikzpicture}[every node/.style={align=center}, node distance=2cm]
 
 		% Nodes
-		\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm] (cnn) {CNN};
-		\node[draw, thick, rectangle, rounded corners, minimum width=3cm, minimum height=2cm, right=1.5cm of cnn] (structured) {Structured \\ Representation};
-		\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm, below=2cm of cnn] (rnn) {RNN};
-		\node[draw, thick, rectangle, rounded corners, minimum width=3cm, minimum height=2cm, right=1.5cm of rnn] (symbolic) {Symbolic \\ Reasoning};
-		\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm, right=3cm of structured] (actor) {Actor, $\mu$};
-		\node[draw, thick, rectangle, rounded corners, minimum width=3cm, minimum height=1.2cm, above=2cm of actor] (environment) {Environment};
-		\node[draw, thick, rectangle, rounded corners, minimum width=2cm, minimum height=1.2cm, below=2cm of actor] (critic) {Critic, $Q$};
+		\node[draw, thick, rectangle, minimum width=2cm, minimum height=1.2cm] (cnn) {CNN};
+		\node[draw, thick, rectangle, minimum width=3cm, minimum height=2cm, right=1.5cm of cnn] (structured) {Structured \\ Representation};
+		\node[draw, thick, rectangle, minimum width=2cm, minimum height=1.2cm, below=2cm of cnn] (rnn) {RNN};
+		\node[draw, thick, rectangle, minimum width=3cm, minimum height=2cm, right=1.5cm of rnn] (symbolic) {Symbolic \\ Reasoning};
+		\node[draw, thick, rectangle, minimum width=2cm, minimum height=1.2cm, right=3cm of structured] (actor) {Actor, $\mu$};
+		\node[draw, thick, rectangle, minimum width=3cm, minimum height=1.2cm, above=2cm of actor] (environment) {Environment};
+		\node[draw, thick, rectangle, minimum width=2cm, minimum height=1.2cm, below=2cm of actor] (critic) {Critic, $Q$};
 
 		% Connecting Arrows
 		\draw[->, thick] (cnn.east) -- (structured.west);
@@ -23,7 +23,7 @@
 		\draw[->, thick] (actor.south) -- (critic.north) node[midway, left] {$a_t$, $a_{t+1}$};
 		\draw[-, thick] (environment.west) -- ++(-4, 0) node[above] (invis) {} -- ++(-4, 0) node[above] (invis2) {};
 		\draw[->, thick] (invis2.south) -- node[right] {Image} (cnn.north);
-		\draw[->, thick] (invis.south) -- node[right] {Position} (structured.north);
+		% \draw[->, thick] (invis.south) -- node[right] {Position} (structured.north);
 
 		\draw[->, thick] (rnn.east) -- (symbolic.west);
 
@@ -34,8 +34,10 @@
 		\draw[->, thick] (critic.east) -- (Q.west);
 
 		% Outer Box
-		\draw[dashed, rounded corners] (-3.75, 4.25) rectangle (6, -4.75) node[below left] {NS-CL};
-		\draw[dashed, rounded corners] (6.25, 4.25) rectangle (12.75, -4.75) node[below left] {DDPG};
+		% \draw[dashed] (-3.75, 4.25) rectangle (6, -4.75) node[above left] {NS-CL};
+		% \draw[dashed] (6.25, 4.25) rectangle (12.75, -4.75) node[above left] {DDPG};
+		\draw[dashed] (-3.75, 4.25) rectangle (6, -5.25) node[above left] {NS-CL};
+		\draw[dashed] (6.25, 4.25) rectangle (12.75, -5.25) node[above left] {DDPG};
 
 	\end{tikzpicture}
   \caption{NS-CL with proposed RL adaptation.}
@@ -55,7 +57,7 @@
 \section{Natural Language Processing}
 \section{State Representation}
 
-\begin{figure}
+\begin{table}
 	\begin{tiny}
 		\begin{center}
 			\begin{tabular}{ | m{2cm} | m{2cm}| m{2cm} | m{2cm} | m{3.25cm} |  }
@@ -86,13 +88,13 @@
 		\end{center}
 	\end{tiny}
 	\caption{Example of state observation before symbolic modification.}
-	\label{fig:default_state}
-\end{figure}
+	\label{tab:default_state}
+\end{table}
 
 
 
 \subsection{Symbolic Augmentations}
-\begin{figure}
+\begin{table}
 	\begin{tiny}
 		\begin{center}
 			\begin{tabular}{ | m{1cm} | m{1.75cm}| m{2cm} | m{1.5cm} | m{3cm} | m{1cm} | }
@@ -125,8 +127,8 @@
 		\end{center}
 	\end{tiny}
 	\caption{Example of symbolically modified state.}
-	\label{fig:symbolic_state}
-\end{figure}
+	\label{tab:symbolic_state}
+\end{table}
 
 
 
